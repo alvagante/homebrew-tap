@@ -4,18 +4,20 @@ cask "smack" do
 
   url "https://github.com/alvagante/smack/releases/download/v#{version}/Smack-v#{version}-macOS-arm64.zip"
   name "Smack"
-  desc "Live Mac system monitor in the notch and menu bar"
+  desc "Live system monitor in the notch and menu bar"
   homepage "https://github.com/alvagante/smack"
 
-  depends_on macos: ">= :sequoia"
   depends_on arch: :arm64
+  depends_on macos: :sequoia
 
   app "Smack.app"
 
   # Remove once releases are signed with a Developer ID and notarized.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Smack.app"]
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:           ["-dr", "com.apple.quarantine", "Smack.app"],
+        chdir:          "{{appdir}}",
+        writable_paths: ["{{appdir}}/Smack.app"]
   end
 
   zap trash: [
