@@ -1,6 +1,6 @@
 cask "smack" do
-  version "0.6.0"
-  sha256 "316a443762a7a11ef5306f29be11c8700d71f6d866068aee6d75cf3ed01c9e8f"
+  version "0.7.0"
+  sha256 "1bd8fadbf19bef9d01871de6e379c1f78677031b002f3442b739ca3e4e8b7c81"
 
   url "https://github.com/alvagante/smack/releases/download/v#{version}/Smack-v#{version}-macOS-arm64.zip"
   name "Smack"
