@@ -17,4 +17,5 @@ jobs:
           brew tap-new local/audit --no-git
           mkdir -p "$(brew --repository local/audit)/Casks"
           cp Casks/*.rb "$(brew --repository local/audit)/Casks/"
+          brew trust local/audit
           for c in Casks/*.rb; do brew audit --cask --strict --online "local/audit/$(basename "$c" .rb)"; done
