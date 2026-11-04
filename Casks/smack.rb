@@ -11,14 +11,7 @@ cask "smack" do
   depends_on macos: :sequoia
 
   app "Smack.app"
-
-  # Remove once releases are signed with a Developer ID and notarized.
-  postflight_steps do
-    run "/usr/bin/xattr",
-        args:           ["-dr", "com.apple.quarantine", "Smack.app"],
-        chdir:          "{{appdir}}",
-        writable_paths: ["{{appdir}}/Smack.app"]
-  end
+  binary "#{appdir}/Smack.app/Contents/Helpers/smack"
 
   zap trash: [
     "~/Library/Application Support/Smack",
